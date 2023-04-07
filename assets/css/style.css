@@ -29,6 +29,7 @@ body {
     max-width: 1000px;
     margin: auto;
     box-sizing: border-box;
+    background-color: var(--secondary);
 }
 
 .header h3 {
@@ -39,7 +40,6 @@ body {
 .empolyee__details--form {
     margin: 20px 0;
     padding: 40px;
-    background-color: var(--secondary);
 }
 
 .name,
