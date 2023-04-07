@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRED Operations</title>
+
+    <!-- Font Awsome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/Cred_favicon.jpg">
+
+    <!-- Custom style css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main>
+        <header class="header">
+            <h3>CRED Operations</h3>
+        </header>
+
+        <div class="container">
+            <div class="empolyee__details--form">
+                <div class="message"></div>
+                <form name="empolyeeData" class="empolyee__form">
+                    <div class="name">
+                        <label for="name">Full Name:</label><br>
+                        <input type="text" name="fullName" id="name" class="form-name" placeholder="Enter your name" />
+                        <i class="fas fa-exclamation-circle failure-icon"></i>
+                        <i class="fa-regular fa-circle-check success-icon"></i>
+                    </div>
+
+                    <div class="email">
+                        <label for="email">Email:</label><br>
+                        <input type="text" id="email" name="email" class="form-email" placeholder="Enter your email" />
+                        <i class="fas fa-exclamation-circle failure-icon"></i>
+                        <i class="fa-regular fa-circle-check success-icon"></i>
+                    </div>
+                    <div class="phone">
+                        <label for="phone">Phone Number:</label><br>
+                        <input type="text" id="phonenumber" name="phonenumber" class="form-phone"
+                            placeholder="Enter your phonenumber" />
+                        <i class="fas fa-exclamation-circle failure-icon"></i>
+                        <i class="fa-regular fa-circle-check success-icon"></i>
+                    </div>
+                    <div class="button">
+                        <button class="submit__btn" id="Sumbit">Sumbit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="empolyee__data">
+                <table width="100%" cellpadding="0" cellspacing="0" class="empolyee__data--table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Sathishkumar</div>
+                        </td>
+
+                        <td>
+                            <div>sk142000@gmail.com</div>
+                        </td>
+                        <td>
+                            <div>+91 8056686885</div>
+                        </td>
+                        <td>
+                            <div class="edit" onclick="updateEmpolyeeDetails(event)">Edit <span
+                                    class="fa-sharp fa-solid fa-pencil"></span></div>
+                        </td>
+                        <td>
+                            <div class="delete">Delete <span class="fa-sharp fa-solid fa-circle-xmark"
+                                    onclick=""></span></div>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+            <div class="popup__form"></div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

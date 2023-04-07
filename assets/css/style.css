@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --primary: #8AAAE5;
+    --secondary: #ffffff;
+    --success: rgb(168, 247, 168);
+}
+
+*,
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--primary);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 800px;
+    max-width: 1000px;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.header h3 {
+    font-size: 22px;
+    text-align: center;
+}
+
+.empolyee__details--form {
+    margin: 20px 0;
+    padding: 40px;
+    background-color: var(--secondary);
+}
+
+.name,
+.email,
+.phone {
+    position: relative;
+}
+
+.success-icon,
+.failure-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+}
+
+.failure-icon {
+    display: none;
+    font-size: 12pt;
+    color: rgb(255, 30, 30);
+}
+
+.success-icon {
+    display: none;
+    font-size: 12pt;
+    color: rgb(0, 172, 0);
+}
+
+.name .form-name,
+.phone .form-phone,
+.email .form-email {
+    border: none;
+    border-bottom: 1px solid rgb(197, 196, 196);
+    outline: none;
+    padding: 8px 0;
+    width: 98%;
+    margin: 12px 0;
+}
+
+.button {
+    text-align: center;
+}
+
+.button .submit__btn {
+    background-color: transparent;
+    padding: 8px 14px;
+    width: 100px;
+    border: 2px solid var(--primary);
+    border-radius: 2px;
+    transition: transform 100ms ease-in, background-color 300ms ease-in;
+    cursor: pointer;
+    font-weight: 600;
+    ;
+}
+
+.button .submit__btn:hover {
+    background-color: var(--primary);
+}
+
+.button .submit__btn:active {
+    transform: scale(0.95);
+    transition: transform 100ms ease-in;
+}
+
+.empolyee__data--table td {
+    text-align: center;
+    padding: 15px 3px;
+}
+
+.empolyee__data--table th {
+    padding: 6px 3px;
+}
+
+
+.edit {
+    cursor: pointer;
+    color: rgb(175, 105, 0);
+}
+
+.delete {
+    cursor: pointer;
+    color: rgb(192, 0, 0);
+}
+
+
+@media only screen and (max-width:999px) {
+    body {
+        position: static;
+        transform: translate(0, 0);
+        display: block;
+        top: 0;
+        left: 0;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width:499px) {
+    body {
+        position: static;
+        transform: translate(0, 0);
+        display: block;
+        top: 0;
+        left: 0;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .empolyee__data--table th,
+    td {
+        font-size: 9px;
+    }
+}
