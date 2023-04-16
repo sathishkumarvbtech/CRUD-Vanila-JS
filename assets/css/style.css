@@ -3,7 +3,6 @@
 :root {
     --primary: #8AAAE5;
     --secondary: #ffffff;
-    --success: rgb(168, 247, 168);
 }
 
 *,
@@ -14,6 +13,8 @@
 
 body {
     background-color: var(--primary);
+    width: 100%;
+    height: 100%;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -22,15 +23,21 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Poppins', sans-serif;
+    padding: 50px 0;
 }
 
 .container {
+    position: relative;
+    background-color: var(--secondary);
     width: 800px;
     max-width: 1000px;
     margin: auto;
     box-sizing: border-box;
-    background-color: var(--secondary);
+    border-radius: 4px;
+}
 
+.header {
+    padding: 25px 0 0;
 }
 
 .header h3 {
@@ -39,8 +46,7 @@ body {
 }
 
 .empolyee__details--form {
-    margin: 20px 0;
-    padding: 40px;
+    padding: 20px;
 }
 
 .name,
@@ -92,7 +98,6 @@ body {
     transition: transform 100ms ease-in, background-color 300ms ease-in;
     cursor: pointer;
     font-weight: 600;
-    ;
 }
 
 .button .submit__btn:hover {
@@ -116,17 +121,139 @@ body {
 
 .edit {
     cursor: pointer;
-    color: rgb(175, 105, 0);
+    width: 60px;
+    background-color: rgb(175, 105, 0);
+    color: var(--secondary);
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 3px;
 }
 
 .delete {
     cursor: pointer;
-    color: rgb(192, 0, 0);
+    width: 60px;
+    background-color: rgb(185, 14, 14);
+    color: var(--secondary);
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 3px;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.411);
+    width: 100%;
+    height: 90vh;
+    top: 0;
+    opacity: 0;
+    transition: opacity 600ms ease-in-out;
+    animation: popup 600ms ease-in;
+}
+
+.popup__form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background-color: var(--secondary);
+    opacity: 0;
+    transition: opacity 900ms ease-in-out;
+}
+
+.show {
+    display: block;
+    opacity: 1;
+}
+
+.update__form {
+    width: 100%;
+}
+
+.message {
+    display: block;
+    padding-left: 20px;
+    visibility: hidden;
+    font-size: 14px;
+}
+
+.showcolor {
+    visibility: visible;
+    color: #6cbb6c;
+    opacity: 1;
+}
+
+.redcolor {
+    visibility: visible;
+    color: red;
+    opacity: 1;
+}
+
+@keyframes popup {
+    0% {
+        transform: scale(0.5);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.close {
+    position: absolute;
+    cursor: pointer;
+    right: 14px;
+    top: 7px;
+    font-size: 25px;
+    color: rgb(185, 14, 14);
+}
+
+.cancel__btn {
+    font-size: 14px;
+    background-color: rgb(185, 14, 14);
+    color: var(--secondary);
+    padding: 8px 14px;
+    margin-left: 20px;
+    width: 100px;
+    border: 2px solid var(--primary) rgb(185, 14, 14);
+    border-radius: 2px;
+    transition: transform 100ms ease-in, background-color 300ms ease-in;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.button .cancel__btn:active {
+    transform: scale(0.95);
+    transition: transform 100ms ease-in;
+}
+
+footer {
+    padding: 20px;
+    background-color: #ffffff;
 }
 
 
-@media only screen and (max-width:999px) {
-    body {
+.footer__message {
+    font-size: 14px;
+    padding-bottom: 15px;
+    transition: visibility 500ms linear;
+}
+
+footer p {
+    color: #a3a3a3;
+    font-size: 12px;
+}
+
+@media only screen and (max-width:799px) {
+    .container {
         position: static;
         transform: translate(0, 0);
         display: block;
@@ -134,14 +261,22 @@ body {
         left: 0;
     }
 
-    .container {
+    .data__container {
         width: 100%;
+    }
+
+    .edit {
+        font-size: 10px;
+    }
+
+    .delete {
+        font-size: 10px;
     }
 
 }
 
-@media only screen and (max-width:499px) {
-    body {
+@media only screen and (max-width:599px) {
+    .container {
         position: static;
         transform: translate(0, 0);
         display: block;
@@ -149,12 +284,42 @@ body {
         left: 0;
     }
 
-    .container {
+    .edit {
+        font-size: 8px;
+    }
+
+    .delete {
+        font-size: 8px;
+    }
+
+    .data__container {
         width: 100%;
+    }
+
+    .overlay {
+        height: 60vh;
+    }
+
+    .popup__form {
+        width: 100%;
+        padding: 10px;
+
     }
 
     .empolyee__data--table th,
     td {
         font-size: 9px;
+    }
+}
+
+@media only screen and (max-width:499px) {
+    .edit {
+        width: 35px;
+        font-size: 7px;
+    }
+
+    .delete {
+        width: 35px;
+        font-size: 7px;
     }
 }
