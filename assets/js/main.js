@@ -4,6 +4,8 @@ const overlayContainer = document.querySelector('.overlay');
 const empolyeeData = document.querySelector(".empolyee__data");
 const msg = document.querySelector(".message");
 const footerMsg = document.querySelector(".footer__message");
+const success = document.querySelectorAll(".success-icon");
+const failure = document.querySelectorAll(".failure-icon");
 const users = [{
     id: 1,
     fullName: "Sathishkumar V",
@@ -20,51 +22,122 @@ formEl.addEventListener("submit", (event) => {
     }
     var lastUser = users[Object.keys(users).sort().pop()];
     user.id = lastUser.id + 1;
+    const [fullName, email, phonenumber] = formEl.elements;
     var message = "Employee data added successfully !";
-    var error = "Please enter  valid empolyee data "
-    let [FullName, email, phone] = formEl.elements;
-    formValidation([FullName, email, phone], user, message, error);
+    formValidation([fullName, email, phonenumber], user);
 })
 
-const formValidation = (Name, user, message, error) => {
-    const success = document.querySelectorAll(".success-icon");
-    const failure = document.querySelectorAll(".failure-icon");
-    if (Name[0].value.trim() === "" || Name[1].value.trim() === "" || Name[2].value.trim() === "") {
-        Name[0].style.borderBottom = "1px solid red";
-        failure[0].style.display = "block";
-        success[0].style.display = "none";
-        Name[0].focus();
-        // Email Validation
-        Name[1].style.borderBottom = "1px solid red";
-        failure[1].style.display = "block";
-        success[1].style.display = "none";
-        msg.innerText = error;
-        // Phone Number Validation
-        Name[2].style.borderBottom = "1px solid red";
-        failure[2].style.display = "block";
-        success[2].style.display = "none";
-        Name[2].focus();
-        msg.innerText = error;
-        msg.classList.add('redcolor');
+formEl.addEventListener("keyup", (event) => {
+    enterKey(event)
+})
+
+const enterKey = (event) => {
+    if (event === "Enter") {
+        const formData = new FormData(formEl);
+        var user = {}
+        for (let [name, value] of formData) {
+            user[name] = value
+        }
+        var lastUser = users[Object.keys(users).sort().pop()];
+        user.id = lastUser.id + 1;
+        formValidation([fullName, email, phonenumber], user);
+    }
+}
+
+const formValidation = (Name, user) => {
+    userfieldValidation(Name, user)
+}
+
+const userfieldValidation = (Name, user) => {
+    if (Name[0].value.trim() === "") {
+        var message ="Name field is empty";
+        showError(Name[0]);
+        showErrorIcon(0);
+        showErrorMessage(message)
+        return false;
+    }
+    if (!isNaN(Name[0].value)) {
+        var message ="Enter valid name"
+        showError(Name[0]);
+        showErrorIcon(0);
+        showErrorMessage(message)
         return false;
     }
     else {
-        formEl.reset()
-        formvaluePushUsers(user)
-        msg.innerText = message;
-        msg.classList.add('showcolor');
-        msg.classList.remove('redcolor');
+        showSuccess(Name[0]);
+        showSuccessIcon(0);
+    }
+
+
+    if (Name[1].value.trim() === "") {
+        var message ="Email fild is empty"
+        showError(Name[1]);
+        showErrorIcon(1);
+        showErrorMessage(message)
+        return false;
+    }
+
+    else {
+        showSuccess(Name[1]);
+        showSuccessIcon(1);
+    }
+
+    if (Name[2].value === "") {
+        var message ="Phonenumber fild is empty"
+        showErrorMessage(message)
+        showError(Name[2]);
+        showErrorIcon(2);
+        return false;
+    }
+
+    else {
+        var message="Empolyee details added successfully";
+        showSuccess(Name[2]);
+        showSuccessIcon(2);
+        formvaluePushUsers(user);
+        showSuccessMessage(message)
+        formEl.reset();
     }
 }
+
+const showError = (input) => {
+    input.parentElement.classList.add("error-border");
+}
+
+const showErrorIcon = (i) => {
+    success[i].classList.remove("show");
+    failure[i].classList.add("show");
+}
+
+const showSuccess = (input) => {
+    input.parentElement.classList.add("success-border");
+}
+
+const showSuccessIcon = (i) => {
+    success[i].classList.add("show");
+    failure[i].classList.remove("show");
+}
+
 const formvaluePushUsers = (user) => {
     users.push(user)
     handleDataSubmit(user)
+}
 
+const showErrorMessage = (message) => {
+    msg.innerText = message;
+    msg.classList.add('show__font-r')
+}
+
+
+const showSuccessMessage = (message) => {
+    msg.innerText = message;
+    msg.classList.add('show__font-g')
 }
 
 const updateEmpolyeeDetails = (id) => {
     users.forEach((user) => {
         if (user.id === id) {
+            overlayContainer.classList.add('show');
             popupForm.innerHTML = `<form name="updateEmpolyeeData" class="update__form">
     <div class="name">
         <label for="name">Full Name:</label><br>
@@ -86,9 +159,6 @@ const updateEmpolyeeDetails = (id) => {
     </div>
 </form>
 <div class="close"><i class="fa-sharp fa-solid fa-circle-xmark clsose--icon" onclick="closeForm()"></i></div>`
-            overlayContainer.classList.add('show');
-            popupForm.style.opacity = 1;
-
         }
     })
 
@@ -130,7 +200,7 @@ const updateData = (id, event) => {
                     Data.innerText = user.phonenumber;
                 }
                 footerMsg.innerText = `Empolyee id ${user.id} details was updated`;
-                footerMsg.classList.add('showcolor');
+                footerMsg.classList.add('show__font-g');
             })
         }
     })
@@ -143,7 +213,7 @@ const deleteData = (id) => {
             users.splice(i, 1);
             document.querySelector(`#user${user.id}`).remove();
             footerMsg.innerText = `Empolyee id ${user.id} details was deleted`;
-            footerMsg.classList.add('redcolor');
+            footerMsg.classList.add('show__font-r');
         }
     })
 }
@@ -170,11 +240,9 @@ const handleDataSubmit = (user) => {
     </td>
 
 </tr>`)
-
 }
 
 users.forEach((user) => {
     handleDataSubmit(user)
 })
-
 
