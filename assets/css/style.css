@@ -311,8 +311,14 @@ footer p {
 
     .popup__form {
         width: 100%;
-        padding: 20px;
+    }
 
+    .update__form{
+        padding: 20px;
+    }
+
+    .close{
+        right: 35pc;
     }
 
     .empolyee__data--table th,
