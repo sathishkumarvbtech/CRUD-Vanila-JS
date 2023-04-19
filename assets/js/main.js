@@ -91,7 +91,7 @@ const userfieldValidation = (Name, user) => {
     }
 
     else {
-        var message="Empolyee details added successfully";
+        var message=`${user.fullName}Empolyee details added successfully`;
         showSuccess(Name[2]);
         showSuccessIcon(2);
         formvaluePushUsers(user);
